@@ -16,6 +16,8 @@ ENV CATALINA_HOME /usr/share/TeamCity
 ENV CATALINA_BASE /usr/share/TeamCity
 ENV CATALINA_OPTS -server -XX:+UseParallelGC
 
+ADD ./jdbc /data/lib
+
 EXPOSE 8111
 
 CMD ["/usr/share/TeamCity/bin/catalina.sh", "run"]

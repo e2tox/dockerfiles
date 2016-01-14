@@ -16,7 +16,8 @@ ENV CATALINA_HOME /usr/share/TeamCity
 ENV CATALINA_BASE /usr/share/TeamCity
 ENV CATALINA_OPTS -server -XX:+UseParallelGC
 
-ADD ./jdbc /data/lib
+ADD ./lib /data
+ADD ./plugins /data
 
 EXPOSE 8111
 

@@ -4,7 +4,7 @@ FROM microbox/java:8u66
 ENV TEAMCITY_VERSION 9.1.5
 
 # Download and unarchive TeamCity
-RUN mkdir /usr/share && curl -jksSL https://download.jetbrains.com/teamcity/TeamCity-${TEAMCITY_VERSION}.tar.gz \
+RUN curl -jksSL https://download.jetbrains.com/teamcity/TeamCity-${TEAMCITY_VERSION}.tar.gz \
     | tar -xzf - -C /usr/share
 
 ENV TEAMCITY_HOME=/usr/share/TeamCity

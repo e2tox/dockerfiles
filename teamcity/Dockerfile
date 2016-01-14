@@ -16,6 +16,6 @@ ENV CATALINA_HOME /usr/share/TeamCity
 ENV CATALINA_BASE /usr/share/TeamCity
 ENV CATALINA_OPTS -server -XX:+UseParallelGC
 
-PORT 8111
+EXPOSE 8111
 
 CMD ['/usr/share/TeamCity/bin/catalina.sh', 'run']

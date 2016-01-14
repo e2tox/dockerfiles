@@ -18,4 +18,4 @@ ENV CATALINA_OPTS -server -XX:+UseParallelGC
 
 EXPOSE 8111
 
-CMD ['/usr/share/TeamCity/bin/catalina.sh', 'run']
+CMD ["/usr/share/TeamCity/bin/catalina.sh", "run"]

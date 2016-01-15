@@ -4,20 +4,21 @@ FROM microbox/java:8u66
 ENV TEAMCITY_VERSION 9.1.5
 
 # Download and unarchive TeamCity
-RUN curl -jksSL https://download.jetbrains.com/teamcity/TeamCity-${TEAMCITY_VERSION}.tar.gz \
-    | tar -xzf - -C /usr/share
+RUN apk upgrade --update && \
+    apk add --update curl git && \
+    curl -jksSL https://download.jetbrains.com/teamcity/TeamCity-${TEAMCITY_VERSION}.tar.gz \
+    | tar -xzf - -C /usr/share && \
+    apk del curl && \
+    rm -rf /tmp/* /var/cache/apk/*
 
 ENV TEAMCITY_HOME /usr/share/TeamCity
-ENV TEAMCITY_DATA_PATH /data
+    TEAMCITY_DATA_PATH /data
+    JAVA_OPTS -Djava.awt.headless=true -Djava.security.egd=file:/dev/./urandom
+    CATALINA_HOME /usr/share/TeamCity
+    CATALINA_BASE /usr/share/TeamCity
+    CATALINA_OPTS -server -XX:+UseParallelGC
 
-ENV JAVA /usr/java/default/bin/java
-ENV JAVA_OPTS -Djava.awt.headless=true -Djava.security.egd=file:/dev/./urandom
-ENV CATALINA_HOME /usr/share/TeamCity
-ENV CATALINA_BASE /usr/share/TeamCity
-ENV CATALINA_OPTS -server -XX:+UseParallelGC
-
-ADD ./lib /data/lib
-ADD ./plugins /data/plugins
+ADD ./data /data
 
 EXPOSE 8111
 

@@ -2,10 +2,10 @@
 FROM alpine:3.3
 
 # Java Version and other ENV
-ENV JAVA_VERSION_MAJOR=7 \
-    JAVA_VERSION_MINOR=80 \
-    JAVA_VERSION_BUILD=15 \
-    JAVA_PACKAGE=server-jre \
+ENV JAVA_VERSION_MAJOR=8 \
+    JAVA_VERSION_MINOR=66 \
+    JAVA_VERSION_BUILD=17 \
+    JAVA_PACKAGE=jdk \
     JAVA=/usr/java/default/bin/java \
     JAVA_HOME=/usr/java/default \
     PATH=${PATH}:/usr/java/default/bin \

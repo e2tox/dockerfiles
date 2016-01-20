@@ -11,12 +11,12 @@ RUN apk upgrade --update && \
     apk del curl && \
     rm -rf /tmp/* /var/cache/apk/*
 
-ENV TEAMCITY_HOME /usr/share/TeamCity \
-    TEAMCITY_DATA_PATH /data \
-    JAVA_OPTS -Djava.awt.headless=true -Djava.security.egd=file:/dev/./urandom \
-    CATALINA_HOME /usr/share/TeamCity \
-    CATALINA_BASE /usr/share/TeamCity \
-    CATALINA_OPTS -server -XX:+UseParallelGC
+ENV TEAMCITY_HOME="/usr/share/TeamCity" \
+    TEAMCITY_DATA_PATH="/data" \
+    JAVA_OPTS="-Djava.awt.headless=true -Djava.security.egd=file:/dev/./urandom" \
+    CATALINA_HOME="/usr/share/TeamCity" \
+    CATALINA_BASE="/usr/share/TeamCity" \
+    CATALINA_OPTS="-server -XX:+UseParallelGC"
 
 ADD ./data /data
 

@@ -11,13 +11,21 @@ RUN apk upgrade --update && \
     mv /usr/share/TeamCity/buildAgent /usr/share/BuildAgent && \
     rm -rf /tmp/* /var/cache/apk/* /usr/share/TeamCity
 
-# Install development sdk and tools
+# Install packages
 RUN apk upgrade --update && \
     apk add --update ansible nodejs make gcc g++ go tar && \
-    mkdir /root/.maven && \
-    curl -jksSL http://www.us.apache.org/dist/maven/maven-3/3.3.9/binaries/apache-maven-3.3.9-bin.tar.gz \
-    | tar -xzf - --strip-components=1 -C /root/.maven && \
     rm -rf /tmp/* /var/cache/apk/*
+
+# TeamCity Version
+ENV MAVEN_VERSION=3.3.9 \
+    NODEJS_VERSION=5.4.1
+
+# Install devtools
+RUN mkdir /root/.maven && \
+    curl -jksSL http://www.us.apache.org/dist/maven/maven-3/${MAVEN_VERSION}/binaries/apache-maven-${MAVEN_VERSION}-bin.tar.gz \
+    | tar -xzf - --strip-components=1 -C /root/.maven && \
+    curl -jksSL https://nodejs.org/dist/v${NODEJS_VERSION}/node-v${NODEJS_VERSION}-linux-x64.tar.xz \
+    | tar -xzf - --strip-components=1 -C /usr
 
 # SSH
 ADD config/ssh /root/.ssh

@@ -13,10 +13,27 @@ RUN apk upgrade --update && \
 
 # Install development sdk and tools
 RUN apk upgrade --update && \
-    apk add --update ansible nodejs && \
+    apk add --update ansible nodejs make gcc go && \
+    mkdir /root/.maven && \
+    curl -jksSL http://www.us.apache.org/dist/maven/maven-3/3.3.9/binaries/apache-maven-3.3.9-bin.tar.gz \
+    | tar -xzf - --strip-components=1 -C /root/.maven && \
     rm -rf /tmp/* /var/cache/apk/*
 
-ENV JAVA_OPTS -Djava.awt.headless=true -Djava.security.egd=file:/dev/./urandom -server -XX:+UseParallelGC
+# SSH
+ADD config/ssh /root/.ssh
+
+# Ansible
+ADD config/ansible /root/.ansible_library
+
+# SBT
+ADD config/sbt /usr/local/bin
+
+# Environment settings
+ENV JAVA_OPTS -Djava.awt.headless=true -Djava.security.egd=file:/dev/./urandom -server -XX:+UseParallelGC \
+    GO_ROOT /usr/lib/go \
+    GO_PATH /root/go \
+    M2_HOME /root/.maven \
+    PATH ${PATH}:${GO_ROOT}/bin:${M2_HOME}/bin \
 
 EXPOSE 9000
 

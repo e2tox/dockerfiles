@@ -23,6 +23,10 @@ ENV NODEJS_VERSION=5.4.1
 RUN curl -jksSL https://nodejs.org/dist/v${NODEJS_VERSION}/node-v${NODEJS_VERSION}-linux-x64.tar.gz \
     | tar -xzf - --strip-components=1 -C /usr/local
 
+# Phantomjs libs
+RUN apk add --update freetype fontconfig && \
+    rm -rf /tmp/* /var/cache/apk/*
+
 # SSH
 ADD config/ssh /root/.ssh
 

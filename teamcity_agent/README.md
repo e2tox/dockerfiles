@@ -9,6 +9,6 @@ This doesn't happen if I replace libstdc++.so.6 by a version downloaded from Ubu
 [PhantomJS](https://bugs.alpinelinux.org/issues/4903)
 
 ```
-apk add --update libstdc++ freetype fontconfig
+apk add --update freetype fontconfig
 ```
 

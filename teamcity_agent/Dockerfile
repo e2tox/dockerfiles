@@ -20,7 +20,7 @@ RUN mkdir /root/.maven && \
 
 # Nodejs
 ENV NODEJS_VERSION=5.4.1
-RUN mkdir /usr/local && \
+RUN mkdir -p /usr/local && \
     curl -jksSL https://nodejs.org/dist/v${NODEJS_VERSION}/node-v${NODEJS_VERSION}-linux-x64.tar.xz \
     | tar -xzf - --strip-components=1 -C /usr/local
 

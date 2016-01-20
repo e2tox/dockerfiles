@@ -13,7 +13,7 @@ RUN apk upgrade --update && \
 
 # Install development sdk and tools
 RUN apk upgrade --update && \
-    apk add --update ansible nodejs make gcc go tar && \
+    apk add --update ansible nodejs make gcc g++ go tar && \
     mkdir /root/.maven && \
     curl -jksSL http://www.us.apache.org/dist/maven/maven-3/3.3.9/binaries/apache-maven-3.3.9-bin.tar.gz \
     | tar -xzf - --strip-components=1 -C /root/.maven && \

@@ -20,8 +20,7 @@ RUN mkdir /root/.maven && \
 
 # Nodejs
 ENV NODEJS_VERSION=5.4.1
-RUN mkdir -p /usr/local && \
-    curl -jksSL https://nodejs.org/dist/v${NODEJS_VERSION}/node-v${NODEJS_VERSION}-linux-x64.tar.gz \
+RUN curl -jksSL https://nodejs.org/dist/v${NODEJS_VERSION}/node-v${NODEJS_VERSION}-linux-x64.tar.gz \
     | tar -xzf - --strip-components=1 -C /usr/local
 
 # SSH
@@ -35,6 +34,9 @@ ADD config/sbt /usr/local/bin
 
 # Build Agent
 ADD config/buildAgent /usr/share/BuildAgent/conf
+
+# LIBGCC
+ADD config/libstdc++/libstdc++.so.6.0.19 /usr/lib/libstdc++.so.6.0.21
 
 # Environment settings
 ENV JAVA_OPTS="-Djava.awt.headless=true -Djava.security.egd=file:/dev/./urandom -server -XX:+UseParallelGC" \

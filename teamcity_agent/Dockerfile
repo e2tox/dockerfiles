@@ -36,7 +36,7 @@ ENV JAVA_OPTS="-Djava.awt.headless=true -Djava.security.egd=file:/dev/./urandom 
     GO_ROOT="/usr/lib/go" \
     GO_PATH="/root/go" \
     M2_HOME="/root/.maven" \
-    PATH="${PATH}:${GO_ROOT}/bin:${M2_HOME}/bin" \
+    PATH="${PATH}:${GO_ROOT}/bin:${M2_HOME}/bin"
 
 EXPOSE 9000
 

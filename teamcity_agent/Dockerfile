@@ -33,10 +33,10 @@ ADD config/buildAgent /usr/share/BuildAgent/conf
 
 # Environment settings
 ENV JAVA_OPTS="-Djava.awt.headless=true -Djava.security.egd=file:/dev/./urandom -server -XX:+UseParallelGC" \
-    GO_ROOT="/usr/lib/go" \
-    GO_PATH="/root/go" \
+    GOROOT="/usr/lib/go" \
+    GOPATH="/root/go" \
     M2_HOME="/root/.maven" \
-    PATH="${PATH}:${GO_ROOT}/bin:${M2_HOME}/bin"
+    PATH="${PATH}:${GOROOT}/bin:${M2_HOME}/bin"
 
 EXPOSE 9000
 

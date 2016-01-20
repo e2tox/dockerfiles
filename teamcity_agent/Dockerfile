@@ -32,11 +32,12 @@ ADD config/sbt /usr/local/bin
 ADD config/buildAgent /usr/share/BuildAgent/conf
 
 # Environment settings
-ENV JAVA_OPTS="-Djava.awt.headless=true -Djava.security.egd=file:/dev/./urandom -server -XX:+UseParallelGC" \
+ENV PATH="/usr/lib/go/bin:/root/.maven/bin:$PATH" \
+    JAVA_OPTS="-Djava.awt.headless=true -Djava.security.egd=file:/dev/./urandom -server -XX:+UseParallelGC" \
     GOROOT="/usr/lib/go" \
     GOPATH="/root/go" \
     M2_HOME="/root/.maven"
-ENV PATH="$GOROOT/bin:$M2_HOME/bin:$PATH"
+ENV
 
 EXPOSE 9000
 

@@ -1,5 +1,10 @@
 FROM microbox/jdk:8u66
 
+# Install packages
+RUN apk upgrade --update && \
+    apk add --update ansible make gcc g++ go tar curl git && \
+    rm -rf /tmp/* /var/cache/apk/*
+
 # TeamCity Version
 ENV TEAMCITY_VERSION 9.1.5
 
@@ -11,12 +16,7 @@ RUN apk upgrade --update && \
     mv /usr/share/TeamCity/buildAgent /usr/share/BuildAgent && \
     rm -rf /tmp/* /var/cache/apk/* /usr/share/TeamCity
 
-# Install packages
-RUN apk upgrade --update && \
-    apk add --update ansible nodejs make gcc g++ go tar && \
-    rm -rf /tmp/* /var/cache/apk/*
-
-# TeamCity Version
+# DevTools Version
 ENV MAVEN_VERSION=3.3.9 \
     NODEJS_VERSION=5.4.1
 
@@ -45,7 +45,6 @@ ENV JAVA_OPTS="-Djava.awt.headless=true -Djava.security.egd=file:/dev/./urandom 
     GOPATH="/root/go" \
     M2_HOME="/root/.maven" \
     PATH="/usr/lib/go/bin:/root/.maven/bin:$PATH"
-
 
 EXPOSE 9000
 

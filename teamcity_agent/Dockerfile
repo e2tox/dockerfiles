@@ -9,22 +9,20 @@ RUN apk upgrade --update && \
 ENV TEAMCITY_VERSION 9.1.5
 
 # Download and unarchive TeamCity
-RUN apk upgrade --update && \
-    apk add --update curl git && \
-    curl -jksSL https://download.jetbrains.com/teamcity/TeamCity-${TEAMCITY_VERSION}.tar.gz \
+RUN curl -jksSL https://download.jetbrains.com/teamcity/TeamCity-${TEAMCITY_VERSION}.tar.gz \
     | tar -xzf - -C /usr/share && \
     mv /usr/share/TeamCity/buildAgent /usr/share/BuildAgent && \
-    rm -rf /tmp/* /var/cache/apk/* /usr/share/TeamCity
+    rm -rf /usr/share/TeamCity
 
-# DevTools Version
-ENV MAVEN_VERSION=3.3.9 \
-    NODEJS_VERSION=5.4.1
-
-# Install devtools
+# Maven
+ENV MAVEN_VERSION=3.3.9
 RUN mkdir /root/.maven && \
     curl -jksSL http://www.us.apache.org/dist/maven/maven-3/${MAVEN_VERSION}/binaries/apache-maven-${MAVEN_VERSION}-bin.tar.gz \
-    | tar -xzf - --strip-components=1 -C /root/.maven && \
-    curl -jksSL https://nodejs.org/dist/v${NODEJS_VERSION}/node-v${NODEJS_VERSION}-linux-x64.tar.xz \
+    | tar -xzf - --strip-components=1 -C /root/.maven
+
+# Nodejs
+ENV NODEJS_VERSION=5.4.1
+RUN curl -jksSL https://nodejs.org/dist/v${NODEJS_VERSION}/node-v${NODEJS_VERSION}-linux-x64.tar.xz \
     | tar -xzf - --strip-components=1 -C /usr
 
 # SSH

@@ -7,8 +7,6 @@ RUN apk upgrade --update && \
 
 # TeamCity Version
 ENV TEAMCITY_VERSION 9.1.5
-
-# Download and unarchive TeamCity
 RUN curl -jksSL https://download.jetbrains.com/teamcity/TeamCity-${TEAMCITY_VERSION}.tar.gz \
     | tar -xzf - -C /usr/share && \
     mv /usr/share/TeamCity/buildAgent /usr/share/BuildAgent && \
@@ -23,7 +21,7 @@ RUN mkdir /root/.maven && \
 # Nodejs
 ENV NODEJS_VERSION=5.4.1
 RUN curl -jksSL https://nodejs.org/dist/v${NODEJS_VERSION}/node-v${NODEJS_VERSION}-linux-x64.tar.xz \
-    | tar -xzf - --strip-components=1 -C /usr
+    | tar -xzf - --strip-components=1 -C /usr/local
 
 # SSH
 ADD config/ssh /root/.ssh

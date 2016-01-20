@@ -11,6 +11,11 @@ RUN apk upgrade --update && \
     mv /usr/share/TeamCity/buildAgent /usr/share/BuildAgent && \
     rm -rf /tmp/* /var/cache/apk/* /usr/share/TeamCity
 
+# Install development sdk and tools
+RUN apk upgrade --update && \
+    apk add --update ansible nodejs && \
+    rm -rf /tmp/* /var/cache/apk/*
+
 ENV JAVA_OPTS -Djava.awt.headless=true -Djava.security.egd=file:/dev/./urandom -server -XX:+UseParallelGC
 
 EXPOSE 9000
